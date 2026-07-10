@@ -1,0 +1,3 @@
+"""
+CosmiCode Domain Layer
+"""
