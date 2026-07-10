@@ -20,7 +20,6 @@ async def main() -> None:
     print("🚀 CosmiCodeBot Started...")
 
     await dp.start_polling(bot)
-
-
+logger.info("Bot is running...")
 if __name__ == "__main__":
     asyncio.run(main())
