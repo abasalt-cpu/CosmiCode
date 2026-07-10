@@ -2,7 +2,7 @@ from app.core import logger
 
 logger.info("Starting CosmiCodeBot...")
 import asyncio
-
+from app.database import Base, engine
 from aiogram import Dispatcher
 
 from app.bot import router
@@ -18,7 +18,7 @@ async def main() -> None:
     dp.include_router(router)
 
     print("🚀 CosmiCodeBot Started...")
-
+Base.metadata.create_all(bind=engine)
     await dp.start_polling(bot)
 logger.info("Bot is running...")
 if __name__ == "__main__":
