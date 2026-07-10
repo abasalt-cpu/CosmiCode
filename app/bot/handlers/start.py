@@ -1,30 +1,28 @@
 from aiogram import Router
-from aiogram.filters import Command
+from aiogram.filters import CommandStart
 from aiogram.types import Message
 
-from app.bot.keyboards.main_menu import get_main_menu
+from app.database.users import create_user, update_last_seen
 
 router = Router()
 
 
-@router.message(Command("start"))
-async def start_handler(message: Message):
-    text = (
-        "🌌 به CosmiCode خوش آمدید.\n\n"
-        "این پروژه در حال توسعه است.\n"
-        "به زودی امکان محاسبه کد کیهانی و دریافت گزارش کامل اضافه خواهد شد."
-    )
+@router.message(CommandStart())
+async def start(message: Message):
+
+    create_user(message.from_user)
+    update_last_seen(message.from_user)
 
     await message.answer(
-        text=text,
-        reply_markup=get_main_menu()
-    )
+        """
+🌌 به CosmiCodeBot خوش آمدید.
 
+این ربات کد کیهانی شما را محاسبه کرده،
+تحلیل کامل شخصیت،
+استعدادها،
+چرخه‌های زندگی
+و گزارش اختصاصی ارائه می‌کند.
 
-@router.message(Command("help"))
-async def help_handler(message: Message):
-    await message.answer(
-        "دستورهای موجود:\n"
-        "/start\n"
-        "/help"
+برای شروع یکی از گزینه‌های زیر را انتخاب کنید.
+"""
     )
