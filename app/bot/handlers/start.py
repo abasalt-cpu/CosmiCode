@@ -3,6 +3,7 @@ from aiogram.filters import CommandStart
 from aiogram.types import Message
 
 from app.database.users import create_user, update_last_seen
+from app.bot.keyboards.main_menu import main_menu
 
 router = Router()
 
@@ -14,8 +15,9 @@ async def start(message: Message):
     update_last_seen(message.from_user)
 
     await message.answer(
-        """
-🌌 به CosmiCodeBot خوش آمدید.
+    text="🌌 به CosmiCodeBot خوش آمدید.",
+    reply_markup=main_menu
+)
 
 این ربات کد کیهانی شما را محاسبه کرده،
 تحلیل کامل شخصیت،
