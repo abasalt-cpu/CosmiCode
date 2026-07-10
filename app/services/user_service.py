@@ -1,3 +1,5 @@
+from app.database.session_manager import get_session
+
 from app.database.repositories import UserRepository
 
 
