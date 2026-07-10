@@ -5,6 +5,9 @@ from aiogram import Dispatcher
 from app.bot import router
 from app.core.bot import bot
 
+from app.database.database import initialize_database
+
+initialize_database()
 
 async def main() -> None:
     dp = Dispatcher()
