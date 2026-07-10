@@ -1,3 +1,6 @@
+from app.core import logger
+
+logger.info("Starting CosmiCodeBot...")
 import asyncio
 
 from aiogram import Dispatcher
