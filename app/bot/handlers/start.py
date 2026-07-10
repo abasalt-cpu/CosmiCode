@@ -13,9 +13,13 @@ router = Router()
 @router.message(CommandStart())
 async def start(message: Message):
 
-    create_user(message.from_user)
-    update_last_seen(message.from_user)
+    session = SessionLocal()
 
+service = UserService(session)
+
+service.register(message.from_user)
+
+session.close()
     await message.answer(
     text="🌌 به CosmiCodeBot خوش آمدید.",
     reply_markup=main_menu
