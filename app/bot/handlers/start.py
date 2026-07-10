@@ -1,3 +1,5 @@
+from app.database.session import SessionLocal
+from app.services import UserService
 from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram.types import Message
